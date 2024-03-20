@@ -69,27 +69,17 @@ function fat_binary ()
 {
     echo "Building fat binary for simulator..."
 
-    # Collect all simulator build paths
     for path in "${BUILT_LIB_PATHS[@]}"
     do
-        case "$path" in
-            *libgit2-ios/iphonesimulator* )
-                SIMULATOR_LIB_PATHS+=("$path")
-                # Remember one header location (headers are the same, so overwriting doesn't matter)
-                base_dir=$(dirname $(dirname "${path}"))
-                HEADER_PATH="${base_dir}/include/git2.h"
-                ;;
-            * )
-                # Ignore libs build for the actual phone
-                ;;
-        esac
+        base_dir=$(dirname $(dirname "${path}"))
+        HEADER_PATH="${base_dir}/include/git2.h"
     done
 
     SIMULATOR_LIB_DIR="${ROOT_PATH}/External/libgit2-ios/iphonesimulator"
     mkdir -p "${SIMULATOR_LIB_DIR}"
 
-    echo "... from ${SIMULATOR_LIB_PATHS[@]}"
-    lipo -create "${SIMULATOR_LIB_PATHS[@]}" -output "${SIMULATOR_LIB_DIR}/libgit2.a"
+    echo "... from ${BUILT_LIB_PATHS[@]}"
+    lipo -create "${BUILT_LIB_PATHS[@]}" -output "${SIMULATOR_LIB_DIR}/libgit2.a"
 
     echo "Copying shared simulator header from ${HEADER_PATH}"
     cp "${HEADER_PATH}" "${SIMULATOR_LIB_DIR}/libgit2.h"
