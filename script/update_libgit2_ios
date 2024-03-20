@@ -115,9 +115,6 @@ function xcframework ()
         esac
     done
 
-    args+=("-library" "${SIMULATOR_LIB_DIR}/libgit2.a")
-    args+=("-headers" "${SIMULATOR_LIB_DIR}/libgit2.h")
-
     echo "... from ${args[@]}"
     xcodebuild -create-xcframework \
                "${args[@]}" \
