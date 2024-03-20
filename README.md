@@ -64,7 +64,9 @@ The easiest way to add SwiftGit2 to your project is to use [Carthage](https://gi
 4. ./update_libssh2_ios
 5. ./update_libgit2_ios
 6. ./update_libgit2
-7. carthage update --use-xcframeworks
+7. cd - && carthage update --use-xcframeworks
+
+
 
 If you’d like, you can do things the ~~hard~~ old-fashioned way:
 
