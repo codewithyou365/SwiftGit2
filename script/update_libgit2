@@ -34,7 +34,7 @@ function setup_build_environment ()
 
 function setup ()
 {
-    if [ "${ROOT_PATH}/External/libgit2-mac/libgit2-mac.a" -nt "${ROOT_PATH}/External/libgit2" ]
+    if [ -f "${ROOT_PATH}/External/libgit2-mac/libgit2-mac.a" ]
     then
         echo "No update needed."
         exit 0

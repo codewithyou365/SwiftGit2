@@ -8,7 +8,7 @@ source "${SCRIPT_DIR}/ios_build_functions.sh"
 
 function setup ()
 {
-    if [ "${ROOT_PATH}/External/libgit2-ios/libgit2.xcframework" -nt "${ROOT_PATH}/External/libgit2" ]
+    if [ -d "${ROOT_PATH}/External/libgit2-ios/libgit2.xcframework" ]
     then
         echo "No update needed."
         exit 0
