@@ -25,6 +25,11 @@ function cleanup ()
 
 function build_ssl () 
 {
+    if [ "${ARCH}" == "arm64" ] && [ "${PLATFORM}" == "iphonesimulator" ]
+    then
+        return
+    fi
+
     rm -rf "/tmp/openssl"
     cp -r "${ROOT_PATH}/External/openssl" "/tmp/"
     pushd "/tmp/openssl" > /dev/null
@@ -60,7 +65,7 @@ function fat_binary ()
     echo "Building fat binary..."
 
     mkdir -p "${ROOT_PATH}/External/ios-openssl/include"
-    cp -r /tmp/openssl-i386/include/openssl "${ROOT_PATH}/External/ios-openssl/include/"
+    cp -r /tmp/openssl-arm64/include/openssl "${ROOT_PATH}/External/ios-openssl/include/"
 
     mkdir -p "${ROOT_PATH}/External/ios-openssl/lib"
 

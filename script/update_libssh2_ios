@@ -18,6 +18,10 @@ function setup ()
 
 function build_ssh2 ()
 {
+    if [ "${ARCH}" == "arm64" ] && [ "${PLATFORM}" == "iphonesimulator" ]
+    then
+        return
+    fi
     mkdir -p "${ROOT_PATH}/External/libssh2-ios/lib" "${ROOT_PATH}/External/libssh2-ios/lib" "${ROOT_PATH}/External/libssh2-ios/src"
 
     rm -rf "${ROOT_PATH}/External/libssh2-ios/src/libssh2"
