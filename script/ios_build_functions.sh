@@ -64,7 +64,7 @@ function build_all_archs ()
     for ARCH in ${ARCHS}
     do
         PLATFORMS=""
-        if [ "${ARCH}" == "i386" ] || [ "${ARCH}" == "x86_64" ] ]
+        if [ "${ARCH}" == "i386" ] || [ "${ARCH}" == "x86_64" ]
         then
             PLATFORMS="${PLATFORMS} iphonesimulator"
         fi
