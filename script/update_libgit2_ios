@@ -78,9 +78,13 @@ function fat_binary ()
                 # Remember one header location (headers are the same, so overwriting doesn't matter)
                 base_dir=$(dirname $(dirname "${path}"))
                 HEADER_PATH="${base_dir}/include/git2.h"
+                XCFRAMEWORK_ARGS+=("-library" "${path}")
+                XCFRAMEWORK_ARGS+=("-headers" "${base_dir}/include/git2.h")
                 ;;
             * )
-                # Ignore libs build for the actual phone
+                XCFRAMEWORK_ARGS+=("-library" "${path}")
+                base_dir=$(dirname $(dirname "${path}"))
+                XCFRAMEWORK_ARGS+=("-headers" "${base_dir}/include/git2.h")
                 ;;
         esac
     done
@@ -101,23 +105,10 @@ function xcframework ()
 {
     echo "Building XCFramework..."
 
-    for path in "${BUILT_LIB_PATHS[@]}"
-    do
-        case "$path" in
-            *libgit2-ios/iphonesimulator* )
-                # Skip simulator library binaries
-                ;;
-            * )
-                args+=("-library" "${path}")
-                base_dir=$(dirname $(dirname "${path}"))
-                args+=("-headers" "${base_dir}/include/git2.h")
-                ;;
-        esac
-    done
 
-    echo "... from ${args[@]}"
+    echo "... from ${XCFRAMEWORK_ARGS[@]}"
     xcodebuild -create-xcframework \
-               "${args[@]}" \
+               "${XCFRAMEWORK_ARGS[@]}" \
                -output "${ROOT_PATH}/External/libgit2-ios/libgit2.xcframework"
 
     echo "Building done."
