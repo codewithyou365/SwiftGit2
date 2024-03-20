@@ -56,7 +56,15 @@ brew install cmake libssh2 libtool autoconf automake pkg-config
 ```
 
 ## Adding SwiftGit2 to your Project
-The easiest way to add SwiftGit2 to your project is to use [Carthage](https://github.com/Carthage/Carthage). Simply add `github "SwiftGit2/SwiftGit2"` to your `Cartfile` and run `carthage update`.
+The easiest way to add SwiftGit2 to your project is to use [Carthage](https://github.com/Carthage/Carthage). Simply add `github "codewithyou365/SwiftGit2" "xcode-15-apple-silicon"` to your `Cartfile` and run below steps.
+
+1. carthage update (here has some errors, don't worry, just do next)
+2. cd Carthage/Checkouts/SwiftGit2/script/
+3. ./update_libssl_ios
+4. ./update_libssh2_ios
+5. ./update_libgit2_ios
+6. ./update_libgit2
+7. carthage update --use-xcframeworks
 
 If you’d like, you can do things the ~~hard~~ old-fashioned way:
 
