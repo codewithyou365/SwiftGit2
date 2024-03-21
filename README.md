@@ -65,6 +65,12 @@ The easiest way to add SwiftGit2 to your project is to use [Carthage](https://gi
 5. ./update_libgit2_ios
 6. ./update_libgit2
 7. cd - && carthage update --use-xcframeworks
+8. Open the workspace in Xcode.
+9. In the Project navigator (on the left-hand side), Control-click (or right-click) on an empty area.
+10. Choose "Add Files to '<Your Workspace Name>'."
+11. Add `SwiftGit2.xcodeproj` to your project’s Xcode project or workspace.
+12. On the “Build Phases” tab of your application target, add `SwiftGit2.framework` to the “Link Binary With Libraries” phase, and add `SwiftGit2.framework` to the “Target Dependencies” phase.
+13. On the “General” tab of your application target, adjust the `Frameworks,Libraries,and Embedded Content` menu of `SwiftGit2.framework` to "Embed & Sign"
 
 
 
